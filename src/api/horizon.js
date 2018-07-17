@@ -1,10 +1,13 @@
 
-// 官方地址
-export const OFFICIAL_HORIZON = 'https://horizon.stellar.org'
+// 官方地址 = 'https://horizon.stellar.org'
+export const OFFICIAL_HORIZON = 'http://47.75.115.19:8888'
 
-export const CHINA_HORIZON = 'https://api.chinastellar.com'
-//万云
-export const WANCLOUD_HORIZON = 'https://stellar-api.wancloud.io'
+//'https://api.chinastellar.com'
+export const CHINA_HORIZON =  'http://47.75.115.19:8888'
 
-//自定义horizon
-export const FCHAIN_HORIZON = 'https://horizon.fchain.io'
+//万云 'https://stellar-api.wancloud.io'
+export const WANCLOUD_HORIZON =  'http://47.75.115.19:8888'
+
+//自定义horizon 'https://horizon.fchain.io'
+export const FCHAIN_HORIZON =  'http://47.75.115.19:8888'
+

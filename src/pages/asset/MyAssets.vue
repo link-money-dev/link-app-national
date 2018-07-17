@@ -9,7 +9,7 @@
       </v-btn>
 
       <!--<v-btn icon slot='right-tool' @click="pickershow()" v-if="islogin">-->
-        <!--<i class="material-icons">&#xE145;</i>-->
+      <!--<i class="material-icons">&#xE145;</i>-->
       <!--</v-btn>-->
       <!--<v-btn icon slot='left-tool' @click="toThirdApps">-->
       <!--<i class="material-icons">apps</i>-->
@@ -40,7 +40,7 @@
         </div>
         <div id="TotalSum" class="myassets_totalSum" >
           <span class="myassets_TotalSumWord" >{{$t('TotalAssets')}}≈</span>
-          <span>{{TotalSum.toFixed(7)}}</span><!-- 要改成资产数组数据的累加的和-->
+          <span>{{TotalSum.toFixed(2)}}</span><!-- 要改成资产数组数据的累加的和-->
           <span>CNY</span>
         </div>
       </scroll>
@@ -265,7 +265,7 @@
               item.price = p.price
               item.total = new Decimal(p.price || 0).times(item.balance).toNumber();
               if(item.total >0){
-                item.total = item.total.toFixed(7)
+                item.total = item.total.toFixed(2)
               }
             }
 
