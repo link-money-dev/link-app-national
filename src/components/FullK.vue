@@ -160,7 +160,7 @@ export default {
             return {
                 animation: true,
                 color: this.colors,
-                backgroundColor: "#212122",
+                backgroundColor: "#000",
               //  title: {left: 'center', text: this.base.code + '/' + this.counter.code },
                 legend: { show: true, top: 2,data: ['MA5', 'MA10','UB','MB','LB'], textStyle: {
                   color: "#777"

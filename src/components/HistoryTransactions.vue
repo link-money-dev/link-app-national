@@ -66,7 +66,7 @@
                           <v-flex xs12 class="assetcodestyle_payment">{{$t("AssetCode")}}</v-flex>
                         </v-layout>
                         <v-layout>
-                          <v-flex xs12 class="assetcodevaluestyle_payment">{{item.asset_type==='native'?"XLM":item.asset_type}}</v-flex>
+                          <v-flex xs12 class="assetcodevaluestyle_payment">{{item.asset_type==='native'?"FTN":item.asset_type}}</v-flex>
                         </v-layout>
                         <v-layout>
                           <v-flex xs12 class="txstyle_payment">TX</v-flex>
@@ -133,7 +133,7 @@
                   <v-layout>
                     <v-flex xs12 class="manage_langstyle">{{$t("Trade.Trade")}}</v-flex>
                   </v-layout>
-                  <v-layout v-for="item in transactionsOperations" :key="item.id" class="transactionsOperationsItem">                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                  <v-layout v-for="item in transactionsOperations" :key="item.id" class="transactionsOperationsItem">
                       <v-flex xs12>
                           <v-layout>
                               <v-flex xs12 class="manage_datetime">{{$t("DateTime")}}</v-flex>
@@ -154,7 +154,7 @@
                             <v-flex xs12 class="manage_amountvalue">{{item.amount}}</v-flex>
                           </v-layout>
                           <v-layout>
-                              <v-flex xs12 class="manage_itemassetcode">{{item.selling_asset_type==='native'?"XLM":item.selling_asset_type}}→{{item.buying_asset_code}}</v-flex>
+                              <v-flex xs12 class="manage_itemassetcode">{{item.selling_asset_type==='native'?"FTN":item.selling_asset_type}}→{{item.buying_asset_code}}</v-flex>
                           </v-layout>
                           <v-layout>
                             <v-flex xs12 class="manage_totalbuy">+{{manage_totalbuy(item.amount,item.price)}}{{item.buying_asset_code}}</v-flex>
@@ -227,7 +227,7 @@
                       </v-layout>
                       <v-layout>
                         <v-flex xs6 class="createaccountbalance">+{{item.starting_balance}}</v-flex>
-                        <v-flex xs6 class="createaccountbalancemsg">XLM</v-flex>
+                        <v-flex xs6 class="createaccountbalancemsg">FTN</v-flex>
                       </v-layout>
                     </v-flex>
                   </v-layout>
@@ -311,7 +311,7 @@
         'balances',
         'paymentsRecords'
       ]),
-      
+
     },
     mounted() {
       this.getTransactionsData()
@@ -401,7 +401,7 @@
              }
         })
         setTimeout(() => {
-          
+
         this.show_flag = true
         }, 0)
         setTimeout(()=>{
@@ -595,7 +595,7 @@
   color:$primarycolor.font
   font-size:16px
   padding-left:8px
-.chitemassetcode 
+.chitemassetcode
   color:$primarycolor.green
   padding-left:8px
   font-size:16px
@@ -686,7 +686,7 @@
   padding-left:8px
   font-size:16px
   color:$secondarycolor.font
-.createaccountclose 
+.createaccountclose
   color:$primarycolor.red
   font-size:16px
   text-align:right
@@ -713,19 +713,19 @@
   font-size:16px
 
 
-  
+
 .transactionsOperationsItem
   padding-bottom:0px
   border-top:2px solid $primarycolor.gray
 
 .memostyle
   word-break:break-all
-  padding:5px 5px 0px 8px 
+  padding:5px 5px 0px 8px
   font-size:16px
   // border-top:1px solid $primarycolor.gray
   color:$secondarycolor.font
 
-.langstyle 
+.langstyle
   color:$primarycolor.green
   font-size:16px
   text-align:center
@@ -942,7 +942,7 @@
   font-size:16px
   text-align:right
 
-  
+
 
 
 

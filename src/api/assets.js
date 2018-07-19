@@ -4,9 +4,9 @@ import axios from 'axios'
 
 
 /**
- * 验证是否为官方XLM资产（stronghold发行了XLM资产，存在重名）
- * @param {String | Object} _code 
- * @param {String} _issuer 
+ * 验证是否为官方FTN资产（stronghold发行了FTN资产，存在重名）
+ * @param {String | Object} _code
+ * @param {String} _issuer
  */
 export function isNativeAsset(_code,_issuer){
   let code=null,issuer=null;
@@ -17,8 +17,8 @@ export function isNativeAsset(_code,_issuer){
     code = _code
     issuer = _issuer
   }
-  if(code!='XLM')return false
-  if(issuer && issuer!='stellar.org')return false
+  if(code!='FTN')return false
+  if(issuer && issuer!='Fotono Foundation')return false
   return true
 }
 

@@ -7,12 +7,12 @@
       <v-btn icon slot="right-tool" @click="readAll">
         <i class="material-icons">done_all</i>
       </v-btn>
-      
+
 
     </tool-bar>
       <ul class="content">
         <li v-for="(item ,index) in messages" class="item" @click="goToDetils(item)" :key="index">
-          <div :class="'item-title' + (reads.indexOf(item.link) === -1  ? '':' read')"> 
+          <div :class="'item-title' + (reads.indexOf(item.link) === -1  ? '':' read')">
             {{item.title }}
           </div>
           <div class="item-time">
@@ -55,9 +55,9 @@
         readAll(){
           this.readAllMsg()
           this.$toasted.show(this.$t('ReadAllMsg'))
-        }, 
-        
-        
+        },
+
+
       },
       computed:{
         ...mapGetters([
@@ -77,7 +77,7 @@
       .item
         position relative
         padding: .2rem .2rem
-        background #303034
+        background #202021
         margin: .1rem auto
         .item-title
           line-height: 24px
@@ -86,7 +86,7 @@
           white-space: nowrap
           overflow hidden
           &.read
-            color: $secondarycolor.font  
+            color: $secondarycolor.font
 
         .item-time
           font-size: .35rem
@@ -104,6 +104,6 @@
           height .2rem
           background: $primarycolor.red
           border-radius .2rem
-          right .1rem 
+          right .1rem
           top .1rem
 </style>

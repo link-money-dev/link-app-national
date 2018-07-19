@@ -128,9 +128,9 @@
   import { REMOVE_TRADEPAIR_KLINE_DATA } from '@/store/modules/AccountsStore'
   import { getDefaultTradePairs } from '@/api/gateways'
 
-  const TAG_ALL = 'All', TAG_XCN = 'XCN', TAG_XLM = 'XLM', TAG_BTC = 'BTC', TAG_ETH = 'ETH', TAG_CUSTOM = '_CUSTOM', TAG_XFF = 'XFF'
+  const TAG_ALL = 'All', TAG_CNY = 'CNY', TAG_FTN = 'FTN', TAG_BTC = 'BTC',  TAG_CUSTOM = '_CUSTOM'
 
-  const TAGS = [TAG_XCN, TAG_BTC, TAG_XLM, TAG_CUSTOM]
+  const TAGS = [TAG_CNY, TAG_BTC, TAG_FTN, TAG_CUSTOM]
 
   export default {
     data(){
@@ -145,7 +145,7 @@
         snackbarText: '',
         snackbar: false,
         snackbarColor: 'primary',
-        filterTag: TAG_XCN,
+        filterTag: TAG_CNY,
         tagIndex: 0,
 
         showaccountsview: false,
@@ -184,18 +184,18 @@
         return 'ReleaseToRefresh'
       },
       pairItems(){
-        let xcn = [], btc = [], xlm=[],eth=[],xff=[],custom=[];
+        let cny = [], btc = [], ftn=[],custom=[];
         let custom_ids = []
         this.tradepairs.custom.forEach((item,index)=>{
           custom.push(Object.assign({}, item,{tradepairIndex: 'custom_'+index, custom: true}))
-          let idf = isNativeAsset(item.from) ? 'XLM' : item.from.code+'-'+item.from.issuer
-          let idt = isNativeAsset(item.to) ? 'XLM' : item.to.code +'-'+item.to.issuer
+          let idf = isNativeAsset(item.from) ? 'FTN' : item.from.code+'-'+item.from.issuer
+          let idt = isNativeAsset(item.to) ? 'FTN' : item.to.code +'-'+item.to.issuer
           custom_ids.push(idf+'_'+idt)
           custom_ids.push(idt+'_'+idf)
         })
         this.tradepairs.sys.forEach((item,index)=>{
-          let idf = isNativeAsset(item.from) ? 'XLM' : item.from.code+'-'+item.from.issuer
-          let idt = isNativeAsset(item.to) ? 'XLM' : item.to.code +'-'+item.to.issuer
+          let idf = isNativeAsset(item.from) ? 'FTN' : item.from.code+'-'+item.from.issuer
+          let idt = isNativeAsset(item.to) ? 'FTN' : item.to.code +'-'+item.to.issuer
           let isChoosed = false
           let ida = idf +'_'+idt
           let idb = idt +'_'+idf
@@ -203,25 +203,19 @@
             isChoosed = true
           }
           let d = Object.assign({},item,{tradepairIndex: 'sys_'+index, custom: false, isChoosed})
-          if(item.to.code === TAG_XCN){
-            xcn.push(d)
+          if(item.to.code === TAG_CNY){
+            cny.push(d)
           }else if(item.to.code === TAG_BTC){
             btc.push(d)
-          }else if(item.to.code === TAG_XLM ) {
-            xlm.push(d)
-          }else if(item.to.code === TAG_ETH){
-            eth.push(d)
-          }else if(item.to.code === TAG_XFF){
-            xff.push(d)
+          }else if(item.to.code === TAG_FTN ) {
+            ftn.push(d)
           }
         })
 
         let result = []
-        result[TAG_XCN] = xcn
+        result[TAG_CNY] = cny
         result[TAG_BTC] = btc
-        result[TAG_XLM] = xlm
-        result[TAG_ETH] = eth
-        result[TAG_XFF] = xff
+        result[TAG_FTN] = ftn
         result[TAG_CUSTOM] = custom
         return result
       },
@@ -280,7 +274,7 @@
       //   this.filterTag = TAG_CUSTOM
       //   this.tagIndex = TAGS.indexOf(TAG_CUSTOM).toString()
       // }
-      this.allTagsLabel = [TAG_XCN, TAG_BTC, TAG_XLM, this.$t('custom')]
+      this.allTagsLabel = [TAG_CNY, TAG_BTC, TAG_FTN, this.$t('custom')]
     },
     mounted(){
       // if(!this.islogin){

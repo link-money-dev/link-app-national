@@ -262,7 +262,7 @@ export default {
       background: $secondarycolor.gray
  .showaccounts
     background: $secondarycolor.gray
-    background: #29292b
+    background: #151515
     margin-top: -5px
     padding: 20px 20px
     color: $primarycolor.font

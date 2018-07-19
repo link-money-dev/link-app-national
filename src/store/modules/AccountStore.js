@@ -50,12 +50,12 @@ const actions = {
     console.log('---------get account info ---'+ address)
     let info = await accountapi.getAccountInfo(address)
     let assets = info.balances.map(ele=>{
-      if(ele.asset_type === 'native')return 'XLM'
+      if(ele.asset_type === 'native')return 'FTN'
       return ele.asset_issuer
     })
     await dispatch('getAssetsAccounts',assets)
     await dispatch('getPayments', address)
-    
+
     commit(ACCOUNT_INFO_SUCCESS, info)
     let ledger = await ledgerapi.getLedger()
     commit(GET_LEDGER_INFO, ledger)
@@ -154,8 +154,8 @@ const getters = {
     info.forEach((element,index) => {
      let obj = {};
      if('native' === element.asset_type){
-        obj.code = 'XLM'
-        obj.issuer = 'stellar.org'
+        obj.code = 'FTN'
+        obj.issuer = 'Fotono Foundation'
       } else {
         obj.code = element.asset_code
         obj.issuer = element.asset_issuer
@@ -214,7 +214,7 @@ const getters = {
     if(state.data.account_id){
       let _records = state.payments.records
       let data =  paymentsapi.convertRecords(state.data.account_id,_records)
-      return data  
+      return data
     }else{
       return []
     }
@@ -225,12 +225,12 @@ const getters = {
       let _id = state.selectedPayment.id
       for(var i=0,n=_records.length;i<n;i++){
         if(_id === _records[i].id)return _records[i]
-      }  
+      }
     }
     return null
   },
-  
-  
+
+
 }
 export default {
   state,

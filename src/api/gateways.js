@@ -23,7 +23,7 @@ export const FED_NETWORK_BIND_ADDRESS = 'bind*fed.network'
 //通账池
 export const INFLATION_POOL = [
   {
-    host:'xlmpool.com',
+    host:'FTNpool.com',
     address: 'GA3FUYFOPWZ25YXTCA73RK2UGONHCO27OHQRSGV3VCE67UEPEFEDCOPA'
   }
 ]
@@ -34,7 +34,7 @@ export const TRADE_PAIRS = [
 
   {
     from: {
-      code: 'XLM'
+      code: 'FTN'
     },
     to: {
       code: 'XCN',
@@ -43,7 +43,7 @@ export const TRADE_PAIRS = [
   },
   {
     from: {
-      code: 'XLM'
+      code: 'FTN'
     },
     to: {
       code: 'BTC',
@@ -52,7 +52,7 @@ export const TRADE_PAIRS = [
   },
   {
     from: {
-      code: 'XLM'
+      code: 'FTN'
     },
     to: {
       code: 'ETH',
@@ -63,9 +63,9 @@ export const TRADE_PAIRS = [
 
 
 export const ASSETS_ISSUER_HOST = {
-  'XLM': {
-    code: 'XLM',
-    host: 'stellar.org'
+  'FTN': {
+    code: 'FTN',
+    host: 'Fotono Foundation'
   },
   'GAREELUB43IRHWEASCFBLKHURCGMHE5IF6XSE7EXDLACYHGRHM43RFOX': {
     code: 'CNY',
@@ -99,8 +99,8 @@ export const NO_FUNDINS = ['XCN-GCNY5OXYSY4FKHOPT2SPOQZAOEIGXB5LBYW3HVU3OWSTQITS
 
 export const BASE_RESERVE = 0.5
 
-//fee 100stroops 
-export const BASE_FEE = 0.00001
+//fee 100stroops
+export const BASE_FEE = 0.00001*50
 
 // 默认axios超时时间
 export const AXIOS_DEFAULT_TIMEOUT = 5000
@@ -108,20 +108,62 @@ export const AXIOS_DEFAULT_TIMEOUT = 5000
 let _default_trade_pair = undefined
 // 默认交易对从fchain获取
 const API_TRADE_PAIR = `https://api.fchain.io/tradepairs`
+// export function defaultTradePairsAPI(){
+//   axios.get(API_TRADE_PAIR,{
+//     timeout: AXIOS_DEFAULT_TIMEOUT
+//   })
+//     .then(response=>{
+//       let data = response.data
+//       if(data.tradepairs){
+//         _default_trade_pair = data.tradepairs
+//
+//       }
+//     })
+//     .catch(err=>{
+//       console.log(err)
+//       //_default_trade_pair = TRADE_PAIRS
+//     })
+// }
+
 export function defaultTradePairsAPI(){
-  axios.get(API_TRADE_PAIR,{
-    timeout: AXIOS_DEFAULT_TIMEOUT
-  })
-    .then(response=>{
-      let data = response.data
-      if(data.tradepairs){
-        _default_trade_pair = data.tradepairs
-      }
-    })
-    .catch(err=>{
-      console.log(err)
-      //_default_trade_pair = TRADE_PAIRS
-    })
+  _default_trade_pair=[
+    {
+      to: {code:"CNY",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"LINK",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"CNY",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"SHIT",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"CNY",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"USD",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"CNY",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"EURO",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"CNY",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"BTC",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"BTC",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"LINK",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"BTC",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"},
+      from:   {code:"SHIT",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"FTN",issuer:"Fotono Foundation"},
+      from:   {code:"BTC",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    },
+    {
+      to: {code:"FTN",issuer:"Fotono Foundation"},
+      from:   {code:"SHIT",issuer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC"}
+    }
+  ]
 }
 
 export function getDefaultTradePairs(){
@@ -182,17 +224,17 @@ export const COINS_ICON = {
   ETC: 'icon-ETC',
   LTC: 'icon-LTC',
   XRP: 'icon-XRP',
-  XLM: 'icon-XLM',
+  FTN: 'icon-FTN',
   ETH: 'icon-ETH',
   BTC: 'icon-btc',
   XEL: 'icon-xel',
   XFF: 'icon-XFF'
-  
+
 }
 
 export const FF_ICON = 'icon-zhanwei'
 
-export const DEFAULT_ICON = 'icon-XLM'
+export const DEFAULT_ICON = 'icon-FTN'
 
 export const WORD_ICON = {
   'W':'icon-shouzimuzhanweiW',

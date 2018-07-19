@@ -61,7 +61,7 @@
   position: relative;
   width: 100%;
   height: 228px;
-  background: #303034;
+  background: #202021;
 }
 .picker-body {
   z-index: 1;

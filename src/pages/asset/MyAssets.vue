@@ -16,9 +16,9 @@
       <!--</v-btn>-->
 
 
-      <!--<v-btn icon slot='right-tool' @click="toAddAsset">-->
-      <!--<i class="material-icons">&#xE145;</i>-->
-      <!--</v-btn>-->
+      <v-btn icon slot='right-tool' @click="toAddAsset">
+        <i class="material-icons">&#xE145;</i>
+      </v-btn>
       <span slot="switch_password">{{$t('Account.Password')}}</span>
     </toolbar>
     <accounts-nav :show="showaccountsview" @close="closeView"/>
@@ -99,7 +99,7 @@
                     <span class="balance">{{item.balanceStr}}</span>
                     <span class="label">{{$t('Total')}}</span>
                     <br/>
-                    <span v-if="item.total >=0">≈{{item.total > 0 ? item.total : 0}}&nbsp;&nbsp;XCN</span>
+                    <span v-if="item.total >=0">≈{{item.total > 0 ? item.total : 0}}&nbsp;&nbsp;CNY</span>
                   </div>
                 </v-flex>
               </v-layout>
@@ -145,6 +145,8 @@
   import { Decimal } from 'decimal.js'
   import throttle from 'lodash/throttle'
   import {SET_PRICE_BY_API} from '@/store/modules/AppSettingStore'
+  import { xdrMsg,getXdrResultCode } from '@/api/xdr'
+
   //过滤0资产
   const FLAG_FILTER_ZERO = "filter_zero";
   //不过滤资产
@@ -203,7 +205,7 @@
       TotalSum() {
         let pricemap = this.prices
         let data = this.balances.map(item=>{
-          let v = isNativeAsset(item) ? pricemap['XLM'] : pricemap[item.code + '-' + item.issuer]
+          let v = isNativeAsset(item) ? pricemap['FTN'] : pricemap[item.code + '-' + item.issuer]
           return v ? new Decimal(v.price || 0).times(item.balance) : new Decimal(0)
         })
         if(data.length === 0)return 0
@@ -320,6 +322,11 @@
         // }, 3000);
 
       });
+
+      // this.addTrust({code:"LINK", issuer: "GCLJ4CBNWR4SOOPZM66W7XFMP62ZDIKBBEWBWEIP7TCA3NM2NVORWV2O"})
+      // {
+      //   console.log('adding trust-------------------------------')
+      // }
     },
     methods: {
       ...mapActions([
@@ -464,7 +471,67 @@
       },
       toThirdApps(){
         this.$router.push({name: 'Apps'})
-      }
+      },
+      addTrust(currency){
+        console.log('in addTrust module---------------------------------------------------------')
+        if(!this.accountData.seed){
+          //   this.$toasted.error(this.$t('Error.NoPassword'))
+          //   return;
+          // }
+          // if(!this.islogin){
+          this.$toasted.error(this.$t('Error.NoPassword'))
+          this.$refs.toolbar.showPasswordLogin()
+          return
+        }
+        if(this.native.balance - this.reserve > this.base_reserve){
+          console.log('enough native asset to continue')
+        }else{
+          this.$toasted.error('no enough lumens to continue')
+          return
+        }
+        if(this.working) return
+        this.trustsuccess = false
+        this.trustfail = false
+        this.showloading = true
+        this.working = true
+        this.loadingTitle = null
+        this.loadingMsg = null
+        let params = {
+          seed: this.accountData.seed,
+          address: this.account.address,
+          code: currency.code,
+          issuer: currency.issuer}
+        this.trust(params)
+          .then(response=>{
+            console.log(response)
+            this.trustsuccess = true
+            this.trustfail = false
+            this.working = false
+            this.loadingTitle = this.$t('AddAssetSuccess')
+            this.asset_code = null
+            this.asset_issuer = null
+
+            setTimeout(()=>{
+              this.showloading = false
+            },3000)
+          })
+          .catch(err=>{
+            console.error(err)
+            this.trustsuccess = false
+            this.trustfail = true
+            this.working = false
+            //有可能返回超时，这时候也需要处理一下
+            let msg = getXdrResultCode(err)
+            this.loadingTitle = this.$t('AddAssetFail')
+            if(msg){
+              this.loadingMsg = this.$t(msg)
+            }
+          })
+          .finally(
+            //this.working = false
+          )
+      },
+
 
     },
     components: {

@@ -28,12 +28,12 @@ function _offer(seed,selling, buying, amount, price) {
   });
 }
 
-// option {type:'buy', currency:'XLM', issuer: '', base: 'CNY', base_issuer: 'GXXX', amount: 100, price: 0.01}
+// option {type:'buy', currency:'FTN', issuer: '', base: 'CNY', base_issuer: 'GXXX', amount: 100, price: 0.01}
 export function offer(seed, option) {
   console.debug('%s %s %s use %s@ %s', option.type, option.amount, option.currency, option.base, option.price);
   var buying, selling;
   var selling_amount, selling_price;
-  
+
   if (option.type == 'buy') {
     selling = getAsset(option.base, option.base_issuer);
     buying = getAsset(option.currency, option.issuer);
@@ -96,9 +96,9 @@ export function myofferConvert(_sellasset,_buyasset,my){
   let buyasset = JSON.parse(JSON.stringify(_buyasset))
   let data = []
   my.forEach(ele=>{
-    let sellcode = 'XLM'
+    let sellcode = 'FTN'
     let sellissuer = null
-    let buycode = 'XLM'
+    let buycode = 'FTN'
     let buyissuer = null
     if(ele.selling.asset_type!='native'){
       sellcode = ele.selling.asset_code
@@ -106,7 +106,7 @@ export function myofferConvert(_sellasset,_buyasset,my){
     }
     if(ele.buying.asset_type!='native'){
       buycode = ele.buying.asset_code
-      buyissuer = ele.buying.asset_issuer 
+      buyissuer = ele.buying.asset_issuer
     }
     let stellarorg = 'stellar.org'
     if(stellarorg === sellasset.issuer){

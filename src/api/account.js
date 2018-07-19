@@ -24,7 +24,7 @@ export function randomByMnemonic(language = 'english'){
 }
 /**
  * 根据mnemonic生成账户
- * @param {String} mnemonic 
+ * @param {String} mnemonic
  * @param { string } language 语言,默认值  english
  */
 export function fromMnemonic(mnemonic,language = 'english'){
@@ -145,7 +145,7 @@ export function send(seed,address,target,assetdata,amount,memo_type,memo_value,b
         if('Error.NotEnoughAsset' === err.message)throw err
         //账户状态是404才会调用创建账户功能
         if(err.data && err.data.status === 404){
-          //新建用户只能发XLM
+          //新建用户只能发FTN
           if(!isNativeAsset(asset)){
             throw new Error('Error.AccountNotFund')
           }
@@ -273,7 +273,7 @@ export function canSend(nativeBalance, reserve, amount, baseFee, numOps){
 }
 
 export function sendByPathPayment(seed, destination, record, memo_type,memo_value){
-  
+
   let _address = address(seed)
   let server  = getServer()
   return server.loadAccount(_address).then(account=>{
@@ -320,7 +320,7 @@ export function sendByPathPayment(seed, destination, record, memo_type,memo_valu
 
 /**
  * 判断是否为英文
- * @param {String} mnemonic 
+ * @param {String} mnemonic
  */
 let PATTERN_ENGLISH = new RegExp("[A-Za-z]+");
 
@@ -331,7 +331,7 @@ export function isEnglishMnemonic(mnemonic){
 let PATTERN_CHINESE = new RegExp("[\u4E00-\u9FA5]+");
 /**
  * 判断是否为中文
- * @param {string} mnemonic 
+ * @param {string} mnemonic
  */
 export function isChineseMnemonic(mnemonic){
   return PATTERN_CHINESE.test(mnemonic);

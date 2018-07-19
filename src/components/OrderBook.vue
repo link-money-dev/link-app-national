@@ -34,7 +34,7 @@
         </div>
         <div class="table-row font-13"
           v-for="(item,index) in bidsdata" :key="index"
-          :style="'background: linear-gradient(to right,#303034 0%,#303034 '
+          :style="'background: linear-gradient(to right,#202021 0%,#202021 '
             +item.blank+'%,#002277 0%,#002277 ' + item.percent +'%);'"
           @click.stop="chooseItem('buy',item)"
           >
@@ -53,7 +53,7 @@
         </div>
         <div class="table-row font-13"
           v-for="(item,index) in asksdata" :key="index"
-          :style="'background: linear-gradient(to left,#303034 0%,#303034 '
+          :style="'background: linear-gradient(to left,#202021 0%,#202021 '
             +item.blank+'%,#733520 0%,#733520 ' + item.percent +'%);'"
             @click.stop="chooseItem('sell',item)"
           >

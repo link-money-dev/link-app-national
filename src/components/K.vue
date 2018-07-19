@@ -317,7 +317,7 @@ export default {
             return {
                 animation: true,
                 color: this.colors,
-                backgroundColor: "#212122",
+                backgroundColor: "#000",
               //  title: {left: 'center', text: this.base.code + '/' + this.counter.code },
                 legend: { show: false, top: 30,data: [this.$t('minute'), 'MA5', 'MA10']},
                 tooltip: {

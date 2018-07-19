@@ -19,10 +19,10 @@ export function getAssetPrice(assets){
   return axios.get(uri)
 }
 
-/** 
+/**
  * 查询充值提现记录
  * curl -X GET --header 'Accept: application/json' 'http://127.0.0.1:5000/api/dwrecords?account=GBIZJJMFITQLABS4OUBD6CCN6SXIOYX6456K6EXWZYFT3523AZPJWAPU&asset_code=XCN&asset_issuer=GCNY5OXYSY4FKHOPT2SPOQZAOEIGXB5LBYW3HVU3OWSTQITS65M5RCNY'
- * @param { String } account 
+ * @param { String } account
  * @param { String } asset code
  * @param { String } asset issuer
  * @return { Object } { 'deposit':[{'amount':'1','tx_id':1,'time':1}], 'withdraw': [{'amount':'1','tx_id':1,'time':1}] }
@@ -46,9 +46,9 @@ export function getDepositAndWithdrawRecords(account, asset_code, asset_issuer){
     #     "type": "canceled", # 取消的订单
     #     "amount": "0.4000000", # counter_asset 的数量
     #     "tx": "72b807ff4b98518ee93bed49dc27580f56b9e0e1391d8450e60d113a969b351d",
-    #     "counter_asset": "XLM", # 卖出的 asset
+    #     "counter_asset": "FTN", # 卖出的 asset
     #     "counter_issuer": null,
-    #     "price": "2.4800000", # 2.48 XCN/XLM (base_asset/counter_asset)
+    #     "price": "2.4800000", # 2.48 XCN/FTN (base_asset/counter_asset)
     #     "base_issuer": "GCNY5OXYSY4FKHOPT2SPOQZAOEIGXB5LBYW3HVU3OWSTQITS65M5RCNY",
     #     "time": 15180063040.4300000
     # },
@@ -88,10 +88,10 @@ export function getFchainRss(){
           //主要字段： title（数组）,pubDate数组，link（数组）,content:encoded(数组)
           resolve(channel[0].item.map(d=>{
             return {
-              'title': d.title[0], 
-              'date': moment(d.pubDate[0]).format('YYYY-MM-DD HH:mm:ss'), 
+              'title': d.title[0],
+              'date': moment(d.pubDate[0]).format('YYYY-MM-DD HH:mm:ss'),
               'link': d.link[0],
-              'content': d['content:encoded'][0] 
+              'content': d['content:encoded'][0]
             }
           }))
         }else{

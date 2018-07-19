@@ -414,7 +414,7 @@ export default {
     color:#f35530;
   }
   .app.application.theme--dark{
-    background: #212122;
+    background: #000;
   }
   .app.application.theme--dark.bg-hide{
     background: none;

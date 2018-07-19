@@ -45,7 +45,7 @@
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-    <preference name="BackgroundColor" value="#212122" />
+    <preference name="BackgroundColor" value="#000" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="EnableViewportScale" value="true" />
     <preference name="SuppressesLongPressGesture" value="false" />
