@@ -25,6 +25,7 @@ Vue.use(Router)
 
 
 
+
 const router = new Router({
   routes: [
     {
@@ -92,7 +93,7 @@ const router = new Router({
         keepAlive: false
       }
     },
-        
+
     {
       path: '/transaction',
       name: 'Transaction',
@@ -114,7 +115,7 @@ const router = new Router({
     addresses,
     account,
     dapps,
-    
+
   ]
 })
 

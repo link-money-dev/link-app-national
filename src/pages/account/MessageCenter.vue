@@ -77,7 +77,7 @@
       .item
         position relative
         padding: .2rem .2rem
-        background #202021
+        background #101011
         margin: .1rem auto
         .item-title
           line-height: 24px

@@ -68,7 +68,7 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#08b5e5',
     error: "#ff0000",
-    notice: "#202021",
+    notice: "#101011",
   }
 })
 // Vue.use(VApp)

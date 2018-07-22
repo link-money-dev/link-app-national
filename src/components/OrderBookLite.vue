@@ -16,7 +16,7 @@
         <div class="buyoffer offermenu">{{$t('Trade.BuyOffer')}}</div>
         <div class="table-row font-13"
           v-for="(item,index) in bidsdata" :key="index"
-          :style="'background: linear-gradient(to right,#202021 0%,#202021 '
+          :style="'background: linear-gradient(to right,#101011 0%,#101011 '
             +item.blank+'%,#002277 0%,#002277 ' + item.percent +'%);'"
           @click.stop="chooseItem('buy',item)"
           >
@@ -35,7 +35,7 @@
 
         <div class="table-row font-13"
           v-for="(item,index) in asksdata" :key="index"
-          :style="'background: linear-gradient(to left,#202021 0%,#202021 '
+          :style="'background: linear-gradient(to left,#101011 0%,#101011 '
             +item.blank+'%,#733520 0%,#733520 ' + item.percent +'%);'"
             @click.stop="chooseItem('sell',item)"
           >

@@ -8,15 +8,17 @@ var parseString = require('xml2js').parseString
 import { CORS_PROXY } from './gateways'
 
 
-const host = 'https://api.fchain.io/v2'
+const host = 'http://127.0.0.1:8000/app1/default'
 
 /**
  * 查询资产价格
  * @param {Array} assets 资产数组
  */
 export function getAssetPrice(assets){
-  let uri = `${host}/api/price?data=`+encodeURIComponent(JSON.stringify(assets))
-  return axios.get(uri)
+  // let uri = `${host}/api/price?data=`+encodeURIComponent(JSON.stringify(assets))
+  let uri='http://127.0.0.1:8000/app1/default/index'
+  let result=axios.get(uri)
+  return result
 }
 
 /**

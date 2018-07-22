@@ -63,9 +63,18 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
+// allow cross domain
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8000");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  next();
+});
+
 // serve Cordova javascript and plugins
 var cordovaPlatformPath = path.join(__dirname, '../platforms/browser/www')
 app.use('/plugins', express.static(path.join(cordovaPlatformPath, 'plugins')))
+
 app.get(
   [
     '/cordova.js',
