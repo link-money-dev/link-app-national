@@ -258,15 +258,15 @@ export default {
       localStorage.setItem(this.choosed.site, "confirm")
       this.showConfirmDlg = false
       if(cordova.platformId === 'browser'){
-        this.appInstance = cordova.InAppBrowser.open(this.choosed.site, '_blank', 'location=yes,toolbar=yes,toolbarcolor=#08b5e5');
+        this.appInstance = cordova.InAppBrowser.open(this.choosed.site, '_blank', 'location=yes,toolbar=yes,toolbarcolor=#cfa15a');
       }else{
         this.appInstance = cordova.ThemeableBrowser.open(this.choosed.site, '_blank', {
               statusbar: {
-                  color: '#08b5e5'
+                  color: '#cfa15a'
               },
               toolbar: {
                   height: 44,
-                  color: '#08b5e5'
+                  color: '#cfa15a'
               },
               browserProgress: {
                 showProgress: true,

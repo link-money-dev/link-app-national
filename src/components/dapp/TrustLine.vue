@@ -1,7 +1,7 @@
 // 授信添加资产
 <template>
   <div class="trust-line-wrapper">
-    
+
     <!-- 显示授信界面 -->
     <div class="confirm-wrapper">
       <div class="confirm-blank"></div>
@@ -19,7 +19,7 @@
           </div>
           <div style="clear:both"></div>
         </div>
-        
+
         <div class="confirm-content">
           <div class="dlg-title text-center">
             <span>{{$t('ManullayAddTrust')}}</span>
@@ -28,7 +28,7 @@
           <div class="confirm-memo">{{asset_code}}</div>
           <div class="confirm-title">{{$t('AssetIssuer')}}</div>
           <div class="confirm-memo">{{asset_issuer | shortaddress}}</div>
-          
+
         </div>
 
         <div class="confirm-btns flex-row textcenter">
@@ -67,10 +67,10 @@
       </div>
     </v-bottom-sheet>
 
-    <loading :show="working" :loading="sending" :success="sendsuccess" :fail='sendfail' 
+    <loading :show="working" :loading="sending" :success="sendsuccess" :fail='sendfail'
       color="red" :title="loadingTitle" :msg="loadingError" :closeable="sendfail" @close="hiddenLoading"/>
 
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -101,7 +101,7 @@ export default {
       sendfail: false,
       loadingTitle: null,
       loadingError: null,
-      
+
     }
   },
   props: {
@@ -126,13 +126,13 @@ export default {
       notfunding: state => state.account.account_not_funding
     }),
     ...mapGetters(["balances", "reserve", "native", "base_fee",'base_reserve']),
-    
+
   },
   beforeMount () {
-    
+
   },
   mounted () {
-    
+
   },
   methods: {
     ...mapActions({
@@ -191,10 +191,10 @@ export default {
       if(this.native.balance - this.reserve > this.base_reserve){
         console.log('enough native asset to continue')
       }else{
-        this.$toasted.error('no enough lumens to continue')
+        this.$toasted.error(this.$t('Error.NotEnoughLumens'))
         this.working = false
         this.sending = false
-        return 
+        return
       }
       this.loadingTitle = null
       this.loadingMsg = null
@@ -208,7 +208,7 @@ export default {
           this.sendSuccess()
         })
         .catch(err=>{
-          this.sendFail(err) 
+          this.sendFail(err)
         })
 
     },
@@ -345,7 +345,7 @@ export default {
     .address
       font-size: 12px
       color: $secondarycolor.font
-  
+
 
 
 .sheet-content

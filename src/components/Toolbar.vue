@@ -135,7 +135,7 @@ export default {
     }),
     changetheme(color){
       if (color=== 'ui'){
-        this.$vuetify.theme.primary = '#08b5e5'
+        this.$vuetify.theme.primary = '#cfa15a'
       }else{
         this.$vuetify.theme.primary = 'red'
       }
@@ -172,6 +172,7 @@ export default {
         password: this.password
       }
       console.log(data)
+
       this.choseAccount(data).then(account=>{
         this.$toasted.show(this.$t('Info.ChangeAccountSuccess'));
         this.showPwdSheet = false;
@@ -179,6 +180,7 @@ export default {
         this.password = null;
         this.showaccounts = false;
         this.getAccountInfo(this.account.address)
+        console.log(this.balances)
       }).catch(err=>{
         console.error('change account error')
         console.error(err)
@@ -247,7 +249,7 @@ export default {
         this.showaccounts = false
 
         this.getAccountInfo(this.account.address)
-
+        var a=1
       }).catch(err=>{
         console.error('change account error')
         console.error(err)

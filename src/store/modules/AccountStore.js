@@ -53,6 +53,13 @@ const actions = {
       if(ele.asset_type === 'native')return 'FTN'
       return ele.asset_issuer
     })
+    for(var i=0;i<info.balances.length;i++)
+    {
+      if(info.balances[i]["asset_code"]!="LINK")
+      {
+        info.balances.splice(i,1)
+      }
+    }
     await dispatch('getAssetsAccounts',assets)
     await dispatch('getPayments', address)
 
@@ -60,6 +67,7 @@ const actions = {
     let ledger = await ledgerapi.getLedger()
     commit(GET_LEDGER_INFO, ledger)
    // await dispatch('getPayments',address)
+
   },
   async getTransactionsPage({commit,state},address){
     let data = await transactionsapi.transactionsPage(address)

@@ -135,7 +135,7 @@ export default {
       navigator.splashscreen.hide();
       if (StatusBar && !StatusBar.isVisible) {
         StatusBar.show();
-        StatusBar.backgroundColorByHexString("#08b5e5");
+        StatusBar.backgroundColorByHexString("#cfa15a");
         this.$store.commit("CHANGE_IOSSTATUSBAR_COLOR", "primary");
       }
       //加载系统配置
@@ -431,7 +431,7 @@ export default {
   }
   .amount-slider.input-group.input-group--slider .input-group__input .slider .slider__track__container .slider__track-fill,
 .amount-slider.input-group.input-group--slider .input-group__input .slider .slider__thumb-container .slider__thumb{
-    background: #ff0000;
+    background: #cfa15a;
   }
   @supports (bottom: constant(safe-area-inset-bottom)) {
     .footer {

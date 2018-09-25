@@ -1,28 +1,28 @@
 <template>
   <div class="page" dark>
     <toolbar :title="$t(title)" :showbackicon="true" style="z-index:999;" @goback="back"/>
-    <swiper :options="swiperOptionTop" id="swiper1" class="swiper-container" ref="swiperTop">
-            <swiper-slide  class="swiper-slide">
-              <div @click="switchComponent('offer')">{{$t('History.Offer')}}</div>
-            </swiper-slide>
-            <swiper-slide class="swiper-slide">
-              <div @click="switchComponent('transaction')">{{$t('History.Transaction')}}</div>
-            </swiper-slide>
-            <swiper-slide class="swiper-slide">
-              <div @click="switchComponent('trade')">{{$t('History.Trade')}}</div>
-            </swiper-slide>
-            <swiper-slide class="swiper-slide">
-              <div @click="switchComponent('depositAndWithdraw')">{{$t('History.DepositAndWithdraw')}}</div>
-            </swiper-slide>
-            <swiper-slide class="swiper-slide">
-              <div @click="switchComponent('effects')">{{$t('History.Effects')}}</div>
-            </swiper-slide>
-            <swiper-slide class="swiper-slide">
-              <div @click="switchComponent('transactions')">{{$t('History.Transactions')}}</div>
-            </swiper-slide>
-        </swiper>
+    <!--<swiper :options="swiperOptionTop" id="swiper1" class="swiper-container" ref="swiperTop">-->
+            <!--<swiper-slide  class="swiper-slide">-->
+              <!--<div @click="switchComponent('offer')">{{$t('History.Offer')}}</div>-->
+            <!--</swiper-slide>-->
+            <!--<swiper-slide class="swiper-slide">-->
+              <!--<div @click="switchComponent('transaction')">{{$t('History.Transaction')}}</div>-->
+            <!--</swiper-slide>-->
+            <!--<swiper-slide class="swiper-slide">-->
+              <!--<div @click="switchComponent('trade')">{{$t('History.Trade')}}</div>-->
+            <!--</swiper-slide>-->
+            <!--<swiper-slide class="swiper-slide">-->
+              <!--<div @click="switchComponent('depositAndWithdraw')">{{$t('History.DepositAndWithdraw')}}</div>-->
+            <!--</swiper-slide>-->
+            <!--<swiper-slide class="swiper-slide">-->
+              <!--<div @click="switchComponent('effects')">{{$t('History.Effects')}}</div>-->
+            <!--</swiper-slide>-->
+            <!--<swiper-slide class="swiper-slide">-->
+              <!--<div @click="switchComponent('transactions')">{{$t('History.Transactions')}}</div>-->
+            <!--</swiper-slide>-->
+        <!--</swiper>-->
     <component v-bind:is="show.component"></component>
-     
+
   </div>
 </template>
 
@@ -77,10 +77,10 @@
       },
     getParams(){
         let routerParams = this.$route.params.active
-        return routerParams==="offer"?0:1
+        return 1 //routerParams==="offer"?0:1
       },
     },
-    mounted () {  
+    mounted () {
       console.log("2222-------------")
 	    this.swiperTop.on('slideChange', this.showinfo)
 	    this.swiperTop.slideTo(this.getParams,0,true)
@@ -119,7 +119,7 @@
         if(typeNumber==5){
           this.switchComponent('transactions')
         }
-      }, 
+      },
     },
     beforeDestroy() {
       this.changeCurrentHistoryComponent(this.show.name)
@@ -160,7 +160,7 @@
   height: 100%;
   opacity: 0.6;
   margin-top:6px
-.swiper-slide-active 
+.swiper-slide-active
   opacity: 1;
-  font-weight 600 
+  font-weight 600
 </style>

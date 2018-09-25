@@ -24,6 +24,7 @@ export function newServer(url){
 export function getServer(){
   if(server)return server
   server = new StellarSdk.Server(url||OFFICIAL_HORIZON)
+  console.log(server)
   return server
 }
 

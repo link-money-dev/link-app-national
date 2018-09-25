@@ -269,7 +269,7 @@ export default {
   width: 100%;
   background: transparent;
 .add
-  background-color #08b5e5  !important
+  background-color #cfa15a  !important
 .hidebackground
   background none
   background-color: transparent

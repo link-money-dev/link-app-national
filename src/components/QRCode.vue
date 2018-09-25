@@ -17,7 +17,7 @@ export default {
     return {
       greenlogo: require("../assets/img/ff-green.png"),
       redlogo: require("../assets/img/ff-red.png"),
-      frontcolor: '#08b5e5'
+      frontcolor: '#cfa15a'
     }
   },
   props:{
@@ -41,7 +41,7 @@ export default {
     if(this.color === RED){
         this.frontcolor = '#ff0000'
       }else{
-        this.frontcolor = '#08b5e5'
+        this.frontcolor = '#cfa15a'
       }
   },
   computed: {

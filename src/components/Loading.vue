@@ -8,14 +8,14 @@
         <img v-else-if="init" src="../assets/img/green_init.gif" class="img"/>
         <img v-else-if="success" src="../assets/img/green_success.gif" class="img"/>
         <img v-else-if="fail" src="../assets/img/green_fail.gif" class="img"/>
-        <!-- <img v-else  src="../assets/img/logo.png" class="img"/> -->
+        <!-- <img v-else  src="../assets/img/splash.png" class="img"/> -->
       </div>
       <div class="load flex2" v-else>
         <img v-if="working" src="../assets/img/red_working.gif" class="img"/>
         <img v-else-if="init" src="../assets/img/red_init.gif" class="img"/>
         <img v-else-if="success" src="../assets/img/red_success.gif" class="img"/>
         <img v-else-if="fail" src="../assets/img/red_fail.gif" class="img"/>
-        <!-- <img v-else  src="../assets/img/logo.png" class="img"/> -->
+        <!-- <img v-else  src="../assets/img/splash.png" class="img"/> -->
       </div>
       <div :class="'load-title flex2 ' + color  + '-color'">{{title}}</div>
       <div class="load-msg flex1">{{msg}}</div>
@@ -23,7 +23,7 @@
         {{$t('Return')}}
       </div>
     </div>
-    
+
   </v-dialog>
 
 </template>
@@ -108,7 +108,7 @@ export default {
     height: 200px
 .load-title
   font-size: 20px
-  text-align: center 
+  text-align: center
   &.green-color
     color: $primarycolor.green
   &.red-color

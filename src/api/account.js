@@ -51,6 +51,8 @@ export function isValidateAddress(address){
 // return Pomise
 export function getAccountInfo(address){
   console.log(` get accountinfo ${address}`)
+  console.log(getServer())
+  console.log()
   return getServer().accounts().accountId(address).call();
 }
 

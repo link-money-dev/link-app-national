@@ -1,64 +1,71 @@
 // 资产详情
 <template>
   <div class="page">
-    <toolbar :title="$t(title)" 
-      :showmenuicon="showmenuicon" 
+    <toolbar :title="$t(title)"
+      :showmenuicon="showmenuicon"
       :showbackicon="showbackicon"
       @goback="back"
-      :shadow=false  
+      :shadow=false
       ref="toolbar"
       >
       <span slot="switch_password">{{$t('Account.Password')}}</span>
     </toolbar>
 
-    <swiper :options="swiperOptionTop" class="gallery-top assets-wrapper" ref="swiperTop">
-      <swiper-slide 
-        v-for="(item,index) in this.balances"
-        v-bind:item="item"
-        v-bind:index="index"
-        v-bind:key="item.code +'_'+item.issuer"
-      >
-        <div class="assets-code">{{item.code}}</div>
-        <div class="assets-issuer" v-if="assethosts[item.issuer]">{{assethosts[item.issuer]}}</div>
-        <div class="assets-issuer" v-else-if="assethosts[item.code]">{{assethosts[item.code]}}</div>
-        <div class="assets-issuer" v-else>{{item.issuer|miniaddress}}</div>
-      </swiper-slide>
-    </swiper>
+    <!--<swiper :options="swiperOptionTop" class="gallery-top assets-wrapper" ref="swiperTop">-->
+      <!--<swiper-slide-->
+        <!--v-for="(item,index) in this.balances"-->
+        <!--v-bind:item="item"-->
+        <!--v-bind:index="index"-->
+        <!--v-bind:key="item.code +'_'+item.issuer"-->
+      <!--&gt;-->
+        <!--<div class="assets-code" >{{item.code}}</div>-->
+        <!--<div class="assets-issuer" v-if="assethosts[item.issuer]">{{assethosts[item.issuer]}}</div>-->
+        <!--<div class="assets-issuer" v-else-if="assethosts[item.code]">{{assethosts[item.code]}}</div>-->
+        <!--<div class="assets-issuer" v-else>{{item.issuer|miniaddress}}</div>-->
+      <!--</swiper-slide>-->
+    <!--</swiper>-->
 
     <div class="content asset_content">
       <swiper :options="swiperOptionContent" class="gallery-content" ref="swiperContent">
-        <swiper-slide 
+        <!--<swiper-slide-->
+          <!--v-for="(item,index) in this.balances"-->
+          <!--v-bind:item="item"-->
+          <!--v-bind:index="index"-->
+          <!--v-bind:key="item.code +'_'+item.issuer"-->
+          <!--class="infocard asset_infocard"-->
+        <!--&gt;-->
+        <swiper-slide
           v-for="(item,index) in this.balances"
           v-bind:item="item"
           v-bind:index="index"
           v-bind:key="item.code +'_'+item.issuer"
           class="infocard asset_infocard"
         >
-          <v-layout row wrap class="asset-amount asset_amount">
-            <v-flex xs12 class="row asset_row" d-flex justify-center align-center>
+          <v-layout row wrap class="asset-amount asset_amount" >
+            <v-flex xs12 class="row asset_row d-flex justify-center align-center">
                 <v-flex xs2 class="label asset_label">{{$t('Total')}}</v-flex>
                 <v-flex class="amount asset_amount">{{item.balance > 0 ? item.balance.toFixed(7):0}}</v-flex>
             </v-flex>
-            <v-flex d-flex justify-center align-center xs12 class="row" v-if="isNative(item)"> 
-                <v-flex xs2 class="label asset_label">{{$t('Available')}}</v-flex>
-                <v-flex class="available asset_available">{{(item.balance - reserve).toFixed(5)}}</v-flex  >
-                <v-spacer></v-spacer>
-                <v-flex xs2 class="label-reserve asset_label_reserve" >{{$t('Reserve')}}</v-flex>
-                <v-flex xs1 class="reserve asset_reserve">{{reserve}}</v-flex>
-            </v-flex>
+            <!--<v-flex d-flex justify-center align-center xs12 class="row" v-if="isNative(item)">-->
+                <!--<v-flex xs2 class="label asset_label">{{$t('Available')}}</v-flex>-->
+                <!--<v-flex class="available asset_available">{{(item.balance - reserve).toFixed(5)}}</v-flex  >-->
+                <!--<v-spacer></v-spacer>-->
+                <!--<v-flex xs2 class="label-reserve asset_label_reserve" >{{$t('Reserve')}}</v-flex>-->
+                <!--<v-flex xs1 class="reserve asset_reserve">{{reserve}}</v-flex>-->
+            <!--</v-flex>-->
             <!-- <v-flex xs12 class="knowledge_of_assets" ><a href="https://fchain.io" target="_blank">了解{{item.code}}&nbsp;></a> -->
-            <v-flex xs12 class="knowledge_of_assets" ><a @click="toAssetKnowledge(item)" target="_blank">{{$t("Understand")}}{{item.code}}&nbsp;></a>
+            <!--<v-flex xs12 class="knowledge_of_assets" ><a @click="toAssetKnowledge(item)" target="_blank">{{$t("Understand")}}{{item.code}}&nbsp;></a>-->
 
-            </v-flex>
+            <!--</v-flex>-->
           </v-layout>
-          <!-- 
+          <!--
             <v-flex d-flex xs12 class="row btns">
                 <v-spacer></v-spacer>
                 <v-btn   class="primary btn" @click.stop="receive">{{$t('Receive')}}</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn   class="error btn" @click.stop="send">{{$t('Send')}}</v-btn>
                 <v-spacer></v-spacer>
-              </v-flex> 
+              </v-flex>
               -->
         </swiper-slide>
       </swiper>
@@ -86,6 +93,7 @@
         </div>
       </card>
     </div>
+
     <!-- 发送和接收按键放在最底部-->
     <v-layout class="fixed-bottom btns">
       <v-flex d-flex xs12 class="row">
@@ -96,7 +104,7 @@
           <v-spacer></v-spacer>
         </v-flex>
     </v-layout>
-    
+
   </div>
 </template>
 
@@ -186,7 +194,7 @@ export default {
         return ele
       })
     },
-  
+
   },
   updated(){
     this.$nextTick(()=>{
@@ -199,14 +207,24 @@ export default {
       }
     })
   },
+
   mounted(){
-    console.log('----222')
+    console.log('-----------------------------222')
+    console.log(this.balances)
+    // this.balances.shift()
+    for(var i=0;i<this.balances.length;i++)
+    {
+      if(this.balances[i]["code"]!="LINK")
+      {
+        this.balances.splice(i,1)
+      }
+    }
     this.swiperTop.controller.control = this.swiperContent
     this.swiperContent.controller.control = this.swiperTop
     this.swiperTop.on('slideChange', this.swipeAsset)
     this.swiperTop.slideTo(this.swiperIndex,0,true)
     //如果历史记录为空,则查询历史记录
-    
+
   },
   methods: {
     ...mapActions({
@@ -232,8 +250,12 @@ export default {
         this.$toasted.error(this.$t('Error.NoPassword'))
         this.$refs.toolbar.showPasswordLogin()
         return
+
       }
+
+      console.log(this.balances)
       this.$router.push({name: 'SendAsset'})
+
     },
     // 接收资产
     receive(){
@@ -248,7 +270,7 @@ export default {
     },
     //跳转到资产简介
     toAssetKnowledge(item){
-        
+
         this.$router.push({
           name:'AssetKnowledge',
           params:{
@@ -258,7 +280,7 @@ export default {
             }
             })
     },
-   
+
   },
   components: {
     Card,
@@ -266,7 +288,7 @@ export default {
     swiper,
     swiperSlide,
     Loading
-    
+
   }
 
 

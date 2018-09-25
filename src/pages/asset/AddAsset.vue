@@ -126,12 +126,23 @@
         asset_issuer: null,
 
         origin_asset_list:[
-          {code:"CNY",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"FOTONO"},
-          {code:"SHIT",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"FOTONO"},
-          {code:"LINK",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"联一联科技"},
-          {code:"USD",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"美联储"},
-          {code:"EURO",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"欧洲央行"},
-          {code:"BTC",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"比特币基金会"},
+          {code:"CNY",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"人民币"},
+          {code:"ETH",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"以太坊"},
+          {code:"LINK",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"联金"},
+          {code:"USD",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"美元"},
+          {code:"EURO",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"欧元"},
+          {code:"BCH",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"比特现金"},
+          {code:"EOS",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"EOS"},
+          {code:"LTC",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"莱特币"},
+          {code:"ADA",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"艾达币"},
+          {code:"XMR",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"门罗币"},
+          {code:"IOTA",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"MIOTA"},
+          {code:"DASH",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"门罗币"},
+          {code:"TRX",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"波场币"},
+          {code:"NEO",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"小蚁币"},
+          {code:"ETC",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"以太经典"},
+          {code:"VET",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"VeChain"},
+          {code:"XEM",issueer:"GBW4VQWWSKIYUJMXUQBF6DLLA6LZUGXN3S4ZR22EX6VFNMZIYDRENAHC",host:"新经币"},
 
         ],
 
@@ -146,12 +157,7 @@
         accountData: state => state.accounts.accountData,
         asset: state => state.asset.selected
       }),
-      ...mapGetters([
-        'balances',
-        'reserve',
-        'base_reserve',
-        'native'
-      ]),
+      ...mapGetters(['balances', 'reserve', 'base_reserve','native']),
 
       addTypeFed(){
         return this.addtype === ADD_TRUST_FED
@@ -409,7 +415,7 @@
         if(this.native.balance - this.reserve > this.base_reserve){
           console.log('enough native asset to continue')
         }else{
-          this.$toasted.error('no enough lumens to continue')
+          this.$toasted.error(this.$t('Error.NotEnoughLumens'))
           return
         }
         if(this.working) return

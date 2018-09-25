@@ -46,7 +46,7 @@ if (window.location.protocol === 'file:' || window.location.port === '3000') {
 // Vue.use(Vuetify)
 // Vue.use(Vuetify, {
 //   theme: {
-//     primary: '#08b5e5',
+//     primary: '#cfa15a',
 //     error: "#ff0000",
 //     notice: "#303034",
 //   }

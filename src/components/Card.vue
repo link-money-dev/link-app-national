@@ -2,7 +2,7 @@
   <div class="f-card full-width" :style="'margin:'+margin+';padding:'+padding+';'">
     <slot name="card-content"></slot>
     <slot></slot>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -27,9 +27,9 @@ export default {
   -moz-box-shadow:2px 2px 20px $primarycolor.gray
   -webkit-box-shadow:2px 2px 20px $primarycolor.gray
   box-shadow:2px 2px 20px $primarycolor.gray
-  
+
 .asset_card_f-card
-  height:320px
+  height:550px
 
 
 </style>

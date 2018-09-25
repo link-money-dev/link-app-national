@@ -1,7 +1,7 @@
 <template>
 <!-- <v-card class="menu-card"> -->
   <v-bottom-nav :value="true" :active.sync="active" color="dark" class="tb-menu" app fixed>
-      <v-btn flat v-for="(item,index) in menus" :key="index" :value="index" @click="redirect(index,item.name)"> 
+      <v-btn flat v-for="(item,index) in menus" :key="index" :value="index" @click="redirect(index,item.name)">
         <span>{{$t(item.title)}}</span>
         <v-icon>{{item.icon}}</v-icon>
         <div  v-if="index!==active && index===3 && unReadCount !==0 "  class="unread-wrapper"></div>
@@ -22,18 +22,18 @@ export default {
           path: "/assets",
           icon: "account_balance_wallet"
         },
-        {
-          title: "Menu.TradeCenter",
-          name: "TradeCenter",
-          path: "/trade",
-          icon: "trending_up"
-        },
-        {
-          title: "Menu.Funding",
-          name: "Funding",
-          path: "/funding",
-          icon: "import_export"
-        },
+        // {
+        //   title: "Menu.TradeCenter",
+        //   name: "TradeCenter",
+        //   path: "/trade",
+        //   icon: "trending_up"
+        // },
+        // {
+        //   title: "Menu.Funding",
+        //   name: "Funding",
+        //   path: "/funding",
+        //   icon: "import_export"
+        // },
         {
           title: "Menu.My",
           name: "My",
@@ -93,7 +93,7 @@ export default {
   width: 10px
   height: 10px
   border-radius: 5px
-  background: $primarycolor.red 
+  background: $primarycolor.red
   right: 20px
   top:5px
   position: absolute

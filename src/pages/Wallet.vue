@@ -12,8 +12,8 @@
     </div>
     <div class="footer">
        <v-layout row wrap>
-        <v-flex xs6 @click="importAccount">
-          <span>{{$t('ImportAccount')}}</span>
+        <v-flex xs6 @click="importAccount" >
+          <span >{{$t('ImportAccount')}}</span>
         </v-flex>
         <v-flex xs6  @click="createAccount">
           <span>{{$t('CreateAccount')}}</span>
@@ -61,7 +61,7 @@ export default {
   font-size: 32px
 
 .create-account-page
-  background: $primarycolor.green
+  background: $secondarycolor.gray
   color: $primarycolor.font
   padding-top: 40%
   height: 100vh
@@ -71,7 +71,7 @@ export default {
     vertical-align: center
     .logo-img
       width: 120px
-      height:156px
+      height:120px
   .logo-title
     text-align: center
     height: 60px

@@ -16,13 +16,14 @@
       <!--</v-btn>-->
 
 
-      <v-btn icon slot='right-tool' @click="toAddAsset">
+      <v-btn icon slot='right-tool' @click="addTrust">
         <i class="material-icons">&#xE145;</i>
       </v-btn>
       <span slot="switch_password">{{$t('Account.Password')}}</span>
     </toolbar>
+
     <accounts-nav :show="showaccountsview" @close="closeView"/>
-    <!--=======================================================-->
+
     <div class="accountandtotalasset">
       <scroll :refresh="reload">
         <div class="accountnameaddress"><!-- 试着改动的地方wdp-->
@@ -38,41 +39,38 @@
             </div>
           </div>
         </div>
-        <div id="TotalSum" class="myassets_totalSum" >
-          <span class="myassets_TotalSumWord" >{{$t('TotalAssets')}}≈</span>
-          <span>{{TotalSum.toFixed(2)}}</span><!-- 要改成资产数组数据的累加的和-->
-          <span>CNY</span>
-        </div>
+        <!--<div id="TotalSum" class="myassets_totalSum" >-->
+          <!--<span class="myassets_TotalSumWord" >{{$t('TotalAssets')}}≈</span>-->
+          <!--<span>{{TotalSum.toFixed(2)}}</span>&lt;!&ndash; 要改成资产数组数据的累加的和&ndash;&gt;-->
+          <!--<span>CNY</span>-->
+        <!--</div>-->
       </scroll>
     </div>
 
     <div class="flex-row">
-      <div class="flex2">&nbsp;</div>
-      <div class="flex1">
-        <v-btn depressed flat color="primary" @click="hiddenMyAssets">
-          <span class="no-upper">{{is_Flag === 'filter_zero'? $t('ShowZeroAsset'): $t('HideZeroAsset')}}</span>
-        </v-btn>
-      </div>
-      <div class="flex1">
-        <v-menu offset-y>
-          <v-btn depressed flat color="primary" slot="activator">
-            <span class="no-upper">{{$t(selectedSortItem.label)}}</span>
-          </v-btn>
-          <v-list>
-            <v-list-tile v-for="item in sortItems" :key="item.key">
-              <v-list-tile-title @click="chgSortItem(item)">{{ $t(item.label) }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-menu>
-      </div>
+      <!--<div class="flex2">&nbsp;</div>-->
+      <!--<div class="flex1">-->
+        <!--<v-btn depressed flat color="primary" @click="hiddenMyAssets">-->
+          <!--<span class="no-upper">{{is_Flag === 'filter_zero'? $t('ShowZeroAsset'): $t('HideZeroAsset')}}</span>-->
+        <!--</v-btn>-->
+      <!--</div>-->
+      <!--<div class="flex1">-->
+        <!--<v-menu offset-y>-->
+          <!--<v-btn depressed flat color="primary" slot="activator">-->
+            <!--<span class="no-upper">{{$t(selectedSortItem.label)}}</span>-->
+          <!--</v-btn>-->
+          <!--<v-list>-->
+            <!--<v-list-tile v-for="item in sortItems" :key="item.key">-->
+              <!--<v-list-tile-title @click="chgSortItem(item)">{{ $t(item.label) }}</v-list-tile-title>-->
+            <!--</v-list-tile>-->
+          <!--</v-list>-->
+        <!--</v-menu>-->
+      <!--</div>-->
     </div>
 
     <scroll :refresh="refresh">
 
       <div class="content">
-
-
-
         <card padding="0px 0px" margin="0px 0px" class="myassets_infocard_thirdassets full-width">
           <div class="assets full-width" slot="card-content">
             <div class="assets-row" v-for="(item,index) in assets" :key="item.issuer+item.code"
@@ -81,17 +79,18 @@
                 right: () => selectedItem = null
               }"
             >
-              <v-layout class="myassets-li third-li" row wrap v-swiper=2.2 @click.stop="toAsset(item)">
+              <v-layout v-if="item.code != 'FTN'" class="myassets-li third-li" row wrap v-swiper=2.2 @click.stop="toAsset(item)">
                 <v-flex xs2 class="myassets-wrapper">
                   <div class="icon-wrapper">
-                    <i :class="'iconfont ' + assetIcon(item.code,item.issuer)"></i>
+                    <!--<i :class="'iconfont ' + assetIcon(item.code,item.issuer)"></i>-->
+                    <img src="../../assets/img/icon.png" class="logo" />
                   </div>
                 </v-flex>
                 <v-flex xs3 class="myassets-wrapper">
                   <div class="myassets">
                     <div class="myassets-name">{{item.code}}</div>
                     <div class="myassets-issuer" v-if="assethosts[item.issuer]">{{assethosts[item.issuer] }}</div>
-                    <div class="myassets-issuer" v-else>{{item.issuer | miniaddress}}</div>
+                    <!--<div class="myassets-issuer" v-else>{{item.issuer | miniaddress}}</div>-->
                   </div>
                 </v-flex>
                 <v-flex xs7 class="myassets-wrapper">
@@ -99,7 +98,7 @@
                     <span class="balance">{{item.balanceStr}}</span>
                     <span class="label">{{$t('Total')}}</span>
                     <br/>
-                    <span v-if="item.total >=0">≈{{item.total > 0 ? item.total : 0}}&nbsp;&nbsp;CNY</span>
+                    <!--<span v-if="item.total >=0">≈{{item.total > 0 ? item.total : 0}}&nbsp;&nbsp;CNY</span>-->
                   </div>
                 </v-flex>
               </v-layout>
@@ -146,7 +145,7 @@
   import throttle from 'lodash/throttle'
   import {SET_PRICE_BY_API} from '@/store/modules/AppSettingStore'
   import { xdrMsg,getXdrResultCode } from '@/api/xdr'
-
+  import { federation } from '@/api/federation'
   //过滤0资产
   const FLAG_FILTER_ZERO = "filter_zero";
   //不过滤资产
@@ -219,7 +218,7 @@
         assethosts: state => state.asset.assethosts,
         notfunding: state => state.account.account_not_funding
       }),
-      ...mapGetters(["balances", "paymentsRecords", "reserve", "native"]),
+      ...mapGetters(["balances", "paymentsRecords", "reserve",'base_reserve', "native"]),
       prices(){
         let obj = {}
         this.price.forEach(item=>{
@@ -323,6 +322,7 @@
 
       });
 
+
       // this.addTrust({code:"LINK", issuer: "GCLJ4CBNWR4SOOPZM66W7XFMP62ZDIKBBEWBWEIP7TCA3NM2NVORWV2O"})
       // {
       //   console.log('adding trust-------------------------------')
@@ -332,8 +332,14 @@
       ...mapActions([
         'getAccountInfo',
         'cleanAccount',
-        'updateAccount'
+        'updateAccount',
       ]),
+      ...mapActions({
+        trust: 'trust',
+        trustAll: 'trustAll',
+        // delTrust: 'delTrust',
+      }),
+
       reload(){
         return this.getAccountInfo(this.account.address)
       },
@@ -346,6 +352,7 @@
             federationAddress: this.accountData.home_domain,
             inflationAddress: this.accountData.inflation_destination
           })
+          console.log(this.accountdata.home_domain)
           let params = {index: this.selectedAccountIndex, account: data}
           console.log(params)
           this.updateAccount(params)
@@ -472,7 +479,8 @@
       toThirdApps(){
         this.$router.push({name: 'Apps'})
       },
-      addTrust(currency){
+      addTrust(){
+        var currency={code: "LINK", issuer: "GCA3SBI2Y6AYHLAW2GBTS7C5HTSFW6OTZACHOVJGBQ6JENTE3ZXPNNSL"}
         console.log('in addTrust module---------------------------------------------------------')
         if(!this.accountData.seed){
           //   this.$toasted.error(this.$t('Error.NoPassword'))
@@ -486,7 +494,7 @@
         if(this.native.balance - this.reserve > this.base_reserve){
           console.log('enough native asset to continue')
         }else{
-          this.$toasted.error('no enough lumens to continue')
+          this.$toasted.error(this.$t('Error.NotEnoughLumens'))
           return
         }
         if(this.working) return
@@ -551,5 +559,9 @@
 <style lang="stylus" scoped>
   @require '~@/stylus/asset.styl'
   @require '~@/stylus/settings.styl'
+  .logo
+    width: 38px
+    height:38px
+    margin-top :5px
 </style>
 

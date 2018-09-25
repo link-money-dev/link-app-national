@@ -133,7 +133,7 @@ export default {
         word-break:break-all
         .avatar
           font-size 16px
-          color  #08b5e5
+          color  #cfa15a
       .myaddress-info
           padding 0 6px
           font-size 14px

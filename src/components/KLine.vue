@@ -282,7 +282,7 @@ export default {
         },
         koption() {
             return {
-                color:['#08b5e5'],
+                color:['#cfa15a'],
                 xAxis: {
                     show: false,
                     type: 'category',

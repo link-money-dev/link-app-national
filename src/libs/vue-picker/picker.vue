@@ -97,8 +97,8 @@
 }
 .picker-h-l,.picker-h-r{
   flex: 5;
-  border-top: 1px solid #08b5e5;
-  border-bottom: 1px solid #08b5e5;
+  border-top: 1px solid #cfa15a;
+  border-bottom: 1px solid #cfa15a;
 }
 .picker-h-m{
   flex: 2;
@@ -110,15 +110,15 @@
 }
 .picker-h-m .icons {
   font-size: 40px;
-  color:#08b5e5;
+  color:#cfa15a;
 }
 /*
 .picker-helper:before {
   content: '';
   width: 45%;
   height: 38px;
-  border-top: 1px solid #08b5e5;
-  border-bottom: 1px solid #08b5e5;
+  border-top: 1px solid #cfa15a;
+  border-bottom: 1px solid #cfa15a;
   display: flex;
 }
 .picker-helper:after {
@@ -126,8 +126,8 @@
   margin-left: 55%;
   width: 45%;
   height: 38px;
-  border-top: 1px solid #08b5e5;
-  border-bottom: 1px solid #08b5e5;
+  border-top: 1px solid #cfa15a;
+  border-bottom: 1px solid #cfa15a;
   display: flex;
 }
 */

@@ -18,7 +18,7 @@
               required
               append-icon='cached'
               :append-icon-cb="this.chooseName"
-            ></v-text-field>  
+            ></v-text-field>
       <v-text-field
               dark
               name="password"
@@ -48,7 +48,7 @@
         <v-flex xs6 @click="nextStep">
           <span :class="nextStepClass">{{$t('NextStep')}}</span>
         </v-flex>
-       </v-layout>  
+       </v-layout>
     </div>
   </div>
 </div>
@@ -98,7 +98,7 @@ export default {
       let colorNum = Math.floor(Math.random()*(RandomColorsCount - 1))
       let colors = this.$t('Random.Colors').split("|")
       let planets = this.$t('Random.Planets').split("|")
-      this.name =  colors[colorNum]+planets[planetNum]
+      this.name = planets[planetNum]
     },
     goback(){
       this.$router.back()
@@ -153,6 +153,6 @@ export default {
 .hint
   color:$primarycolor.green
   font-size: 14px
-  
+
 </style>
 

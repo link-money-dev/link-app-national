@@ -207,7 +207,7 @@ export default {
 
         .avatar {
           font-size: 1.2em;
-          color: #08b5e5;
+          color: #cfa15a;
         }
       }
 
@@ -239,12 +239,12 @@ export default {
   margin:0px 0px
 
 .send {
-  background-color: #08b5e5 !important;
+  background-color: #cfa15a !important;
 
 }
 
 .moddel {
-  color: #08b5e5 !important;
+  color: #cfa15a !important;
 }
 
 .contactdetails_sendposition

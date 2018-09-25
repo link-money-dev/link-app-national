@@ -29,7 +29,7 @@ export default {
   padding-top: 45%
   .logo
     width: 120px
-    height:156px
+    height:120px
 
 
 </style>

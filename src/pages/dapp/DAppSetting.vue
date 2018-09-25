@@ -251,7 +251,7 @@ export default {
           white-space: nowrap
         .avatar
           font-size: 1.2em
-          color: #08b5e5
+          color: #cfa15a
         .app-link
           color: $secondarycolor.font!important
 

@@ -189,7 +189,7 @@ export default {
           white-space: nowrap
         .avatar
           font-size: 1.2em
-          color: #08b5e5
+          color: #cfa15a
         .myaddress-address
           font-weight: lighter
           font-size: 14px
